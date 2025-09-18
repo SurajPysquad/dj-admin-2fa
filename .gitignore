@@ -131,3 +131,5 @@ static/admin_2fa_plus/
 
 # Zip files
 *.zip
+
+setup.py
