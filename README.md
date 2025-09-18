@@ -1,4 +1,4 @@
-# Django Admin 2FA Plus
+# Dj Admin 2FA
 
 [![PyPI](https://img.shields.io/pypi/v/django-admin-2fa-plus)](https://pypi.org/project/django-admin-2fa-plus/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
