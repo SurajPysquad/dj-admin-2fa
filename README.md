@@ -5,7 +5,7 @@
 [![Django Versions](https://img.shields.io/badge/Django-3.2%2B-blue)](https://www.djangoproject.com/)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/your-username/django-admin-2fa-plus)
 
-**Django Admin 2FA Plus** is a secure, easy-to-use Two-Factor Authentication package for Django Admin. It provides TOTP-based verification (Google Authenticator, Authy, etc.), recovery codes, and optional trusted devices.
+**Dj Admin 2FA ** is a secure, easy-to-use Two-Factor Authentication package for Django Admin. It provides TOTP-based verification (Google Authenticator, Authy, etc.), recovery codes, and optional trusted devices.
 
 ---
 
@@ -26,7 +26,7 @@
 ## 📦 Installation
 
 ```bash
-pip install django-admin-2fa-plus
+pip install dj-admin-2fa
 ```
 
 Add it to your `INSTALLED_APPS`:
@@ -114,7 +114,7 @@ Please follow PEP8, isort and write tests for any new functionality.
 
 ## 📬 Support
 
-For questions, bug reports, or feature requests, please open an [issue](https://github.com/zahid-ali-shah/django-admin-2fa-plus/issues) on GitHub.
+For questions, bug reports, or feature requests, please open an [issue](https://github.com/SurajPysquad/dj-admin-2fa/issues) on GitHub.
 
 ---
 
