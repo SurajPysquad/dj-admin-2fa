@@ -1,7 +1,7 @@
 # Dj Admin 2FA
 
 [![PyPI](https://img.shields.io/pypi/v/django-admin-2fa-plus)](https://pypi.org/project/django-admin-2fa-plus/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/pypi/l/dj-admin-2fa)](LICENSE)
 [![Django Versions](https://img.shields.io/badge/Django-3.2%2B-blue)](https://www.djangoproject.com/)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/your-username/django-admin-2fa-plus)
 
@@ -76,19 +76,22 @@ python manage.py migrate
 ## ⚙️ Optional Settings
 
 You can override the default behavior using these settings in your Django `settings.py`:
+## Admin 2FA settings
+DJ_ADMIN_2FA = {
+    "ISSUER_NAME": "Django Admin Example",
+}
 
 | Setting | Default | Description |
 |--------|---------|-------------|
-| `ADMIN_2FA_REDIRECT_URL` | `/admin/` | URL to redirect to after successful verification |
-| `ADMIN_2FA_TOTP_DIGITS` | `6` | Number of digits for the TOTP code |
-| `ADMIN_2FA_TOTP_STEP` | `30` | Step size in seconds for TOTP code rotation |
-| `ADMIN_2FA_TOTP_ALGORITHM` | `'sha1'` | Algorithm used for TOTP (`'sha1'`, `'sha256'`, `'sha512'`) |
-| `ADMIN_2FA_BACKUP_CODES_COUNT` | `10` | Number of backup codes generated |
-| `ADMIN_2FA_TRUSTED_DEVICE_DAYS` | `30` | Days to trust a device when user selects "Remember this device" |
-| `ADMIN_2FA_ENABLE_EMAIL_OTP` | `False` | Enable fallback email OTP support |
-| `ADMIN_2FA_EMAIL_SENDER` | `None` | Sender address for email OTP |
-| `ADMIN_2FA_EMAIL_SUBJECT` | `'Your login code'` | Subject line for email OTP |
-| `ADMIN_2FA_EMAIL_TEMPLATE` | `None` | Path to custom HTML template for email OTP |
+| `REDIRECT_URL` | `/admin/` | URL to redirect to after successful verification |
+| `LOGIN_URL` | `/admin/` | URL to Login Admin |
+| `ISSUER_NAME` | `Django Admin Example` | Name of the issuer |
+| `TOTP_DIGITS` | `6` | Number of digits for the TOTP code |
+| `TOTP_STEP` | `30` | Step size in seconds for TOTP code rotation |
+| `TOTP_ALGORITHM` | `'sha1'` | Algorithm used for TOTP (`'sha1'`, `'sha256'`, `'sha512'`) |
+| `BACKUP_CODES_COUNT` | `10` | Number of backup codes generated |
+| `TRUSTED_DEVICE_DAYS` | `30` | Days to trust a device when user selects "Remember this device" |
+| `VERIFICATION_TIMEOUT` | `300` |  Default 5 minutes |
 
 ---
 
