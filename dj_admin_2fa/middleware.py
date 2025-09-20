@@ -7,23 +7,27 @@ from django.urls import reverse
 
 from .utils import get_admin_2fa_settings, should_require_2fa
 
-
+settings_dict = get_admin_2fa_settings()
+admin_url = settings_dict.get("ADMIN_URL", [])
 class Admin2FAMiddleware:
     """Middleware to enforce 2FA for admin users."""
 
     def __init__(self, get_response):
         self.get_response = get_response
         # Compile a list of exempt URLs
+        # Ensure ADMIN_URL always has trailing slash
+        settings_dict = get_admin_2fa_settings()
+        self.admin_url = settings_dict["ADMIN_URL"]  # e.g. "secure-admin/"
+        # Compile exempt URLs dynamically
         self.exempt_urls = [
-            re.compile(r"^/admin/login/$"),
-            re.compile(r"^/admin/logout/$"),
-            re.compile(r"^/admin-2fa-plus/"),
-            re.compile(r"^/static/"),
-            re.compile(r"^/media/"),
+            re.compile(rf"^{self.admin_url}login/$"),
+            re.compile(rf"^{self.admin_url}logout/$"),
+            re.compile(r"^static/"),
+            re.compile(r"^media/"),
         ]
 
         # Add any user-defined exempt URLs
-        user_exempt = getattr(settings, "ADMIN_2FA_PLUS", {}).get("EXEMPT_URLS", [])
+        user_exempt = getattr(settings, "DJ_ADMIN_2FA", {}).get("EXEMPT_URLS", [])
         for url in user_exempt:
             self.exempt_urls.append(re.compile(url))
 
@@ -38,8 +42,8 @@ class Admin2FAMiddleware:
             if exempt_url.match(path):
                 return self.get_response(request)
 
-        # Check if path is in the admin
-        if not path.startswith("admin/"):
+        # Only enforce inside admin
+        if not path.startswith(self.admin_url):
             return self.get_response(request)
 
         # Check if user needs 2FA

@@ -39,23 +39,27 @@ def generate_backup_codes(count=10, length=10):
 
 def get_admin_2fa_settings():
     """Get 2FA settings with defaults."""
+    # Normalize admin_url (no leading slash, always trailing slash)
+    admin_url = getattr(settings, "ADMIN_URL", "admin/").strip("/")
+    if not admin_url.endswith("/"):
+        admin_url += "/"
+
     defaults = {
         "ISSUER_NAME": "Django Admin SurajPatidar",
-        "REDIRECT_URL": "/admin/",
-        "LOGIN_URL": "admin:login",
+        "ADMIN_URL": admin_url,              # e.g. "admin/" or "secure-admin/"
+        "REDIRECT_URL": f"/{admin_url}",     # path for redirects
+        "LOGIN_URL": "admin:login",          # named URL
         "BACKUP_CODES_COUNT": 10,
         "TRUSTED_DEVICE_DAYS": 30,
         "TOTP_DIGITS": 6,
         "TOTP_STEP": 30,
         "TOTP_ALGORITHM": "sha1",
-        "VERIFICATION_TIMEOUT": 300,  # 5 minutes
+        "VERIFICATION_TIMEOUT": 300,
         "RATE_LIMIT_ATTEMPTS": 5,
-        "RATE_LIMIT_TIMEOUT": 300,  # 5 minutes
+        "RATE_LIMIT_TIMEOUT": 300,
     }
 
     user_settings = getattr(settings, "DJ_ADMIN_2FA", {})
-
-    # Merge defaults with user settings
     return {**defaults, **user_settings}
 
 
