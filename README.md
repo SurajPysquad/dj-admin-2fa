@@ -84,6 +84,7 @@ DJ_ADMIN_2FA = {
 | Setting | Default | Description |
 |--------|---------|-------------|
 | `REDIRECT_URL` | `/admin/` | URL to redirect to after successful verification |
+| `ADMIN_URL` | `admin/` | URL to redirect to after successful verification |
 | `LOGIN_URL` | `/admin/` | URL to Login Admin |
 | `ISSUER_NAME` | `Django Admin Example` | Name of the issuer |
 | `TOTP_DIGITS` | `6` | Number of digits for the TOTP code |
