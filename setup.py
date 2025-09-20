@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="dj-admin-2fa",
-    version="1.0.0",
+    version="1.1.0",
     description="Two-Factor Authentication for Django Admin with TOTP, backup codes, trusted devices, and more.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
